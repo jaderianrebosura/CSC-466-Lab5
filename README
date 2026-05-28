@@ -1,1 +1,24 @@
+Program:
+    pageRank.py
 
+Usage:
+    python3 pageRank.py <filename> <dataset_type> [undirected]
+
+Dataset types:
+    football
+    normal
+
+Example uses:
+    python3 pageRank.py NCAA_football.csv football
+    python3 pageRank.py dolphins.csv normal
+    python3 pageRank.py lesmis.csv normal
+    python3 pageRank.py dolphinsDir.csv normal undirected
+    python3 pageRank.py lesmisDir.csv normal undirected
+
+Notes:
+    For NCAA football, edges point from loser to winner.
+    For normal datasets, each row is treated as node1 -> node2.
+    We chose to use the optional undirected flag for files that list each undirected edge only once.
+    For large datasets, example input to print to file:
+    python3 pageRank.py NCAA_football.csv football > football_output.txt
+    Preset damping factor is 0.85, tolerance is 0.0001, and max iterations is 1000.
