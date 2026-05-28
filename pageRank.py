@@ -4,7 +4,7 @@ import sys
 import numpy as np
 
 def parse_csv(filename, dataset_type="normal", undirected=False):
-    edges = set()
+    edges = []
     nodes = set()
 
     with open(filename, 'r', encoding='utf-8') as file:
@@ -16,13 +16,13 @@ def parse_csv(filename, dataset_type="normal", undirected=False):
 
             if dataset_type == "football":
                 src, dst = parse_football_row(row)
-                edges.add((src, dst))
+                edges.append((src, dst))
             else:
                 src, dst = parse_row(row)
-                edges.add((src, dst))
+                edges.append((src, dst))
 
                 if undirected:
-                    edges.add((dst, src))
+                    edges.append((dst, src))
 
             nodes.add(src)
             nodes.add(dst)
@@ -82,7 +82,7 @@ def build_transition_matrix(adjacency):
             probability = 1 / len(outgoing)
 
             for dst in outgoing:
-                matrix[dst, src] = probability
+                matrix[dst, src] += probability
 
     return matrix
 
